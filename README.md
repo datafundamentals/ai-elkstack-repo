@@ -46,10 +46,31 @@ knife bootstrap 10.0.1.2 -x vagrant -P vagrant --sudo -N df_box_elkstack --boots
 ## For Clustered VM ##
 
 ```
-knife bootstrap 10.0.1.2 -x vagrant -P vagrant --sudo -N df_box_elkstack --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_elasticsearch],recipe[df_kibana],recipe[df_kibana::kibana_nginx]"
+knife bootstrap 10.0.1.2 -x vagrant -P vagrant --sudo -N df_box_elasticsearch --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_elasticsearch],recipe[df_kibana],recipe[df_kibana::kibana_nginx]"
 
 knife bootstrap 10.0.1.3 -x vagrant -P vagrant --sudo -N df_box_logstash --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_nginx],recipe[df_logstash],recipe[df_logstash::logstash_forwarder]"
 
 ```
 * (please note in this you will have to push some attributes to the logstash cookbook. Might need to look into a data bag) 
+
+
+### For Future releases
+In this repo, we have included a basic shell script for creating a logstash-forwarder data bag with proper keys. The cookbooks currently do not use data_bags, so it is somewhat frivolous until further notice.
+
+To generate, run: 
+```
+./make-lumberjack-key.sh
+```
+
+## Knife Topo steps
+This is where we shall begin. Once you have set up and configured your machines as you want them using the run_list scripts, you will want to convert the topology data for your chef-server
+
+###For Standalone
+```
+knife topo export elkstack df_box_elkstack > elkstack.json
+```
+# For Cluster
+```
+knife topo export elkstack df_box_elasticsearch df_box_logstash > elkstack.json
+
 
