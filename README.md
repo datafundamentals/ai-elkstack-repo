@@ -33,6 +33,7 @@ vagrant up
 and you should have two brand new instances labeled
 * ai-elkstack-1
 * ai-elkstack-2 
+
 feel free to change the name, I am not sold on it. 
 
 next, you will want to bootstrap your nodes with the appropriate cookbooks to ensure that you are running things properly. 
@@ -47,7 +48,7 @@ knife bootstrap 10.0.1.2 -x vagrant -P vagrant --sudo -N df_box_elkstack --boots
 ```
 knife bootstrap 10.0.1.2 -x vagrant -P vagrant --sudo -N df_box_elkstack --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_elasticsearch],recipe[df_kibana],recipe[df_kibana::kibana_nginx]"
 
-knife bootstrap 10.0.1.3 -x vagrant -P vagrant --sudo -N df_box_logstash --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_nginx],recipe[df_logstash],recipe[df_logstash::logstash_forwarder"
+knife bootstrap 10.0.1.3 -x vagrant -P vagrant --sudo -N df_box_logstash --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_nginx],recipe[df_logstash],recipe[df_logstash::logstash_forwarder]"
 
 ```
 * (please note in this you will have to push some attributes to the logstash cookbook. Might need to look into a data bag) 
