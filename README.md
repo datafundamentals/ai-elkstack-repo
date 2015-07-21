@@ -72,5 +72,10 @@ knife topo export elkstack df_box_elkstack > elkstack.json
 # For Cluster
 ```
 knife topo export elkstack df_box_elasticsearch df_box_logstash > elkstack.json
+```
 
+After this, you will want to import the topologies into the system. 
+```
+knife topo import elkstack.json
+```
 
