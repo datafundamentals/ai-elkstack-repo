@@ -53,12 +53,17 @@ then you will have to vagrant ssh into ai-elkstack-1 and run sudo chef-client to
 ## For Clustered VM ##
 
 ```
-knife bootstrap 10.0.1.2 -x vagrant -P vagrant --sudo -N df_box_elasticsearch --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_elasticsearch],recipe[df_kibana],recipe[df_kibana::kibana_nginx]"
+knife bootstrap 10.0.1.3 -x vagrant -P vagrant --sudo -N df_box_elasticsearch --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_elasticsearch],recipe[df_kibana],recipe[df_kibana::kibana_nginx]"
 
-knife bootstrap 10.0.1.3 -x vagrant -P vagrant --sudo -N df_box_logstash --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_nginx],recipe[df_logstash],recipe[df_logstash::logstash_forwarder]"
+knife bootstrap 10.0.1.2 -x vagrant -P vagrant --sudo -N df_box_logstash --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_logstash],recipe[df_logstash::logstash_forwarder]"
 
 ```
+respective commands for node add after failed run_list 
+```
+knife node run_list add df_box_elasticsearch "recipe[df_java],recipe[df_elasticsearch],recipe[df_kibana],recipe[df_kibana::kibana_nginx]"
 
+knife node run_list add df_box_logstash "recipe[df_java],recipe[df_logstash],recipe[df_logstash::logstash_forwarder]"
+```
 
 ### For Future releases
 In this repo, we have included a basic shell script for creating a logstash-forwarder data bag with proper keys. The cookbooks currently do not use data_bags, so it is somewhat frivolous until further notice.
@@ -84,4 +89,12 @@ After this, you will want to import the topologies into the system.
 ```
 knife topo import elkstack.json
 ```
+
+Finally, with the properly created topology cookbooks, you will want to create the servers. This is made easier. 
+
+```
+knife topo create elkstack --bootstrap --sudo -xvagrant -Pvagrant
+```
+this should bootstrap your system with the appropriate pieces needed. 
+
 
