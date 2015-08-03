@@ -7,7 +7,7 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
-numNodes = 2
+numNodes = 3
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
