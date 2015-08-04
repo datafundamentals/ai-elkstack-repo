@@ -3,7 +3,7 @@
 
 #
 # Vagrantfile for three-machine test topology. 
-# ipaddresses are 10.0.1.2, 10.0.1.3, 10.0.1.4 for ai-test-1 - ai-test-3. 
+# ipaddresses are 10.0.1.2, 10.0.1.3, 10.0.1.4 for ai-elkstack-1 - ai-elkstack-3. 
 
 VAGRANTFILE_API_VERSION = "2"
 
@@ -32,6 +32,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  #config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
+  config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
 
 end
