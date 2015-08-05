@@ -2,15 +2,11 @@
   "name": "elkstack",
   "id": "elkstack",
   "chef_environment": "_default",
-  "tags": [
-
-  ],
+  "tags": [],
   "nodes": [
     {
       "name": "df_box_elkstack",
-      "tags": [
-
-      ],
+      "tags": [],
       "normal": {
         "topo": {
           "node_type": "elkstack_standalone",
@@ -29,9 +25,7 @@
       ]
     }
   ],
-  "services": [
-
-  ],
+  "services": [],
   "cookbook_attributes": [
     {
       "cookbook": "elkstack",

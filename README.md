@@ -53,10 +53,11 @@ then you will have to vagrant ssh into ai-elkstack-1 and run sudo chef-client to
 ## For Clustered VM ##
 
 ```
-knife bootstrap 10.0.1.3 -x vagrant -P vagrant --sudo -N df_box_elasticsearch --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_elasticsearch],recipe[df_kibana],recipe[df_kibana::kibana_nginx]"
+knife bootstrap 10.0.1.3 -x vagrant -P vagrant --sudo -N df_box_elasticsearch --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_elasticsearch],recipe[df_logstash::logstash_ssl],recipe[df_kibana],recipe[df_kibana::kibana_nginx]"
 
 knife bootstrap 10.0.1.2 -x vagrant -P vagrant --sudo -N df_box_logstash --bootstrap-version 12.0.3 -r "recipe[df_java],recipe[df_logstash],recipe[df_logstash::logstash_forwarder]"
 
+knife bootstrap 10.0.1.4 -x vagrant -P vagrant --sudo -N df_box_application --bootstrap-version 12.0.3 -r "recipe[df_logstash::logstash_ssl],recipe[df_logstash::logstash_forwarder]"
 ```
 respective commands for node add after failed run_list 
 ```
@@ -78,22 +79,28 @@ This is where we shall begin. Once you have set up and configured your machines 
 
 ###For Standalone
 ```
-knife topo export elkstack df_box_elkstack > elkstack.json
+knife topo export df_box_elkstack --topo elkstack > elkstack.json
 ```
 # For Cluster
 ```
-knife topo export elkstack df_box_elasticsearch df_box_logstash > elkstack.json
+knife topo export df_box_elasticsearch df_box_logstash df_box_application --topo elkstackcluster > elkstack2.json
 ```
 
 After this, you will want to import the topologies into the system. 
 ```
+# standalone
 knife topo import elkstack.json
+#cluster
+knife topo import elkstackcluster.json
 ```
 
 Finally, with the properly created topology cookbooks, you will want to create the servers. This is made easier. 
 
 ```
+#standalone
 knife topo create elkstack --bootstrap --sudo -xvagrant -Pvagrant
+#cluster
+knife topo create elkstackcluster --bootstrap --sudo -xvagrant -Pvagrant
 ```
 this should bootstrap your system with the appropriate pieces needed. 
 

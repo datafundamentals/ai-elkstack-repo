@@ -10,6 +10,10 @@
 # Attributes for specific node_type
 if node['topo']['node_type'] == "elasticsearch"
   default['df_elasticsearch']['network_host'] = "10.0.1.3" 
+  default['df_logstash']['logstash_ip'] = "10.0.1.2" 
+  default['df_logstash']['logstash_port'] = "5000" 
+  default['df_logstash']['ssl_path'] = "/etc/pki/tls" 
+  default['df_logstash']['elasticsearch_host'] = "127.0.0.1" 
   default['df_kibana']['kibana_version'] = "kibana-4.0.1-linux-x64" 
   default['df_kibana']['initscript'] = "https://gist.githubusercontent.com/thisismitch/8b15ac909aed214ad04a/raw/bce61d85643c2dcdfbc2728c55a41dab444dca20/kibana4" 
   default['df_kibana']['kibana_host'] = "localhost" 
@@ -18,9 +22,6 @@ if node['topo']['node_type'] == "elasticsearch"
   override['java']['jdk_version'] = 8 
   override['java']['install_flavor'] = "oracle" 
   override['java']['oracle']['accept_oracle_download_terms'] = true 
-  override['java']['version'] = "7" 
-  override['nginx']['version'] = "1.4.2" 
-  override['elasticsearch']['version'] = "1.4.5" 
 end
 # Attributes for specific node_type
 if node['topo']['node_type'] == "logstash"
@@ -31,12 +32,11 @@ if node['topo']['node_type'] == "logstash"
   override['java']['jdk_version'] = 8 
   override['java']['install_flavor'] = "oracle" 
   override['java']['oracle']['accept_oracle_download_terms'] = true 
-  override['java']['version'] = "7" 
 end
 # Attributes for specific node_type
 if node['topo']['node_type'] == "appserver"
   default['df_logstash']['logstash_ip'] = "10.0.1.2" 
   default['df_logstash']['logstash_port'] = "5000" 
   default['df_logstash']['ssl_path'] = "/etc/pki/tls" 
-  default['df_logstash']['elasticsearch_host'] = "localhost" 
+  default['df_logstash']['elasticsearch_host'] = "127.0.0.1" 
 end
