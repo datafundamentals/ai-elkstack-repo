@@ -1,5 +1,8 @@
 # Automate_Insights_Elkstack 
-This is the project repo for deploying a standalone elkstack using a chef-zero server locally, and a cookbook for spinning up a server. 
+This is the project repo for testing the knife-topo plugin by automate insights. The project is two fold. 
+1. Spin up an elkstack standalone node 
+2. Spin up a distributed elkstack cluster
+3. Do both using the knife-topo plugin
 
 ## REQUIREMENTS
 
@@ -7,7 +10,7 @@ This is the project repo for deploying a standalone elkstack using a chef-zero s
 * ChefDK 0.6.0 or later
 * Vagrant 1.6.5 or later on the system (avoid 1.7.2, has problematic issues)
 * Basics understanding of Chef
-* Grasp of knife-topo
+* Grasp of knife-topo and having it installed (chef gem install knife-topo)
 * Automate.insights account through amazon or email address. 
 
 ## NOTE 
