@@ -21,11 +21,13 @@ in order to spin things up, you will need to run first spin up the chef-server
 ```
 chef-zero -d -H10.0.1.1
 ```
-Next, you will want to make sure that chef-zero has all the cookbooks up and running on the chef-zero server. 
+Next, you will want to make sure that chef-zero has all the cookbooks up and running on the chef-zero server.
+
+Use Berkshelf to pull in the cookbook dependencies, then upload to the newly created chef-zero server  
 
 ```
-cd cookbooks
-knife cookbook upload * 
+berks vendor 
+knife cookbook upload --all --cookbook-path berks-cookbooks
 ```
 you can verify very quickly with a "knife cookbook list" to see that your cookbooks have been properly uploaded. 
 
@@ -36,7 +38,8 @@ vagrant up
 ```
 and you should have two brand new instances labeled
 * ai-elkstack-1
-* ai-elkstack-2 
+* ai-elkstack-2
+* ai-elkstack-3 
 
 feel free to change the name, I am not sold on it. 
 
@@ -67,14 +70,6 @@ respective commands for node add after failed run_list
 knife node run_list add df_box_elasticsearch "recipe[df_java],recipe[df_elasticsearch],recipe[df_kibana],recipe[df_kibana::kibana_nginx]"
 
 knife node run_list add df_box_logstash "recipe[df_java],recipe[df_logstash],recipe[df_logstash::logstash_forwarder]"
-```
-
-### For Future releases
-In this repo, we have included a basic shell script for creating a logstash-forwarder data bag with proper keys. The cookbooks currently do not use data_bags, so it is somewhat frivolous until further notice.
-
-To generate, run: 
-```
-./make-lumberjack-key.sh
 ```
 
 ## Knife Topo steps

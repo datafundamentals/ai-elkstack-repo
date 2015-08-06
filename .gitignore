@@ -10,7 +10,7 @@ Berksfile.lock
 \#*#
 .*.sw[a-z]
 *.un~
-
+berks-cookbooks/
 # Bundler
 Gemfile.lock
 bin/*
