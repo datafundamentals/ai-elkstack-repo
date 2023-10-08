@@ -1,0 +1,73 @@
+entity Airplane {
+	model String
+    make String
+    color String
+}
+
+entity Car {
+	motorSize String
+	modelName String
+	wheelSize String
+	transmission String
+	color String
+	yearOf Integer
+	price Integer
+}
+
+entity Truck {
+	modelName String
+	make String
+	motorSize Integer
+	color String
+	}
+
+entity CodingCategory {
+	name String
+}
+
+entity Dog {
+	name String
+	age Integer
+	breed String
+}
+
+entity Frog {
+	name String
+	age Integer
+	species String
+	}
+
+entity Movie {
+	name String
+	yearOf Integer
+	genre String
+	rating String
+}
+
+entity SpringProject {
+	title String
+	description String
+	imagePath String
+	url String
+}
+
+entity Student {
+	name String
+	agassignmentNum Integer
+	githubHandle String
+	ide String
+	uid String
+}
+
+entity User {
+	firstName String
+	lastName String
+	email String
+	password String
+}
+
+entity UserHistory {
+	name String
+	issue String
+	issueDate LocalDate
+}
